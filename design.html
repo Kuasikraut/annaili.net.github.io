@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ДАС ДАЗАЙН - ДАДА</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier Prime', monospace;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 2rem;
+            color: #fff;
+            text-decoration: none;
+            z-index: 1000;
+        }
+        
+        .back-btn:hover {
+            color: red;
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .title {
+            font-size: 6rem;
+            letter-spacing: 20px;
+            animation: titleGlitch 2s infinite;
+            text-shadow: 5px 5px 0 red, -5px -5px 0 cyan;
+        }
+        
+        @keyframes titleGlitch {
+            0%, 100% { transform: translate(0); }
+            25% { transform: translate(-5px, 5px) skew(2deg); }
+            50% { transform: translate(5px, -5px) skew(-2deg); }
+            75% { transform: translate(-5px, -5px) skew(2deg); }
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            letter-spacing: 8px;
+            margin-top: 30px;
+            color: #888;
+        }
+        
+        .gallery {
+            padding: 100px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            letter-spacing: 10px;
+            text-align: center;
+            margin-bottom: 60px;
+            text-shadow: 2px 2px 0 red;
+        }
+        
+        .designs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+        
+        .design-item {
+            border: 3px solid #fff;
+            padding: 0;
+            background: #111;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .design-item:hover {
+            border-color: red;
+            transform: scale(1.02);
+            box-shadow: 0 0 30px red;
+        }
+        
+        .design-preview {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #333;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .design-preview svg {
+            width: 60%;
+            height: 60%;
+        }
+        
+        .design-info {
+            padding: 25px;
+        }
+        
+        .design-name {
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+        
+        .design-desc {
+            color: #888;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            line-height: 1.6;
+        }
+        
+        .principles {
+            padding: 100px 40px;
+            background: #111;
+        }
+        
+        .principles-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .principle {
+            border-left: 5px solid red;
+            padding: 20px 30px;
+            background: #000;
+        }
+        
+        .principle-title {
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            color: red;
+        }
+        
+        .principle-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">←</a>
+    
+    <section class="hero">
+        <h1 class="title">ДАС ДАЗАЙН</h1>
+        <p class="subtitle">АНТИ-ЭСТЕТИКА КАК ЭСТЕТИКА</p>
+    </section>
+    
+    <section class="gallery">
+        <h2 class="section-title">РАБОТЫ</h2>
+        
+        <div class="designs-grid">
+            <div class="design-item">
+                <div class="design-preview">
+                    <svg viewBox="0 0 200 200" fill="white">
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="white" stroke-width="3"/>
+                        <rect x="60" y="60" width="80" height="80" fill="red"/>
+                        <polygon points="100,40 140,160 60,160" fill="cyan" opacity="0.7"/>
+                    </svg>
+                </div>
+                <div class="design-info">
+                    <h3 class="design-name">ГЕОМЕТРИЯ ХАОСА</h3>
+                    <p class="design-desc">Базовые формы в конфликте. Порядок против беспорядка.</p>
+                </div>
+            </div>
+            
+            <div class="design-item">
+                <div class="design-preview">
+                    <svg viewBox="0 0 200 200" fill="white">
+                        <line x1="0" y1="0" x2="200" y2="200" stroke="red" stroke-width="5"/>
+                        <line x1="200" y1="0" x2="0" y2="200" stroke="yellow" stroke-width="5"/>
+                        <circle cx="100" cy="100" r="50" fill="none" stroke="cyan" stroke-width="8"/>
+                    </svg>
+                </div>
+                <div class="design-info">
+                    <h3 class="design-name">ПЕРЕСЕЧЕНИЕ</h3>
+                    <p class="design-desc">Точка встречи всех противоречий.</p>
+                </div>
+            </div>
+            
+            <div class="design-item">
+                <div class="design-preview">
+                    <svg viewBox="0 0 200 200" fill="white">
+                        <rect x="20" y="20" width="160" height="160" fill="none" stroke="white" stroke-width="2"/>
+                        <ellipse cx="100" cy="100" rx="70" ry="40" fill="red"/>
+                        <circle cx="100" cy="100" r="20" fill="black"/>
+                    </svg>
+                </div>
+                <div class="design-info">
+                    <h3 class="design-name">ОКО НАБЛЮДАТЕЛЯ</h3>
+                    <p class="design-desc">Глаз видит только то, что готов увидеть.</p>
+                </div>
+            </div>
+            
+            <div class="design-item">
+                <div class="design-preview">
+                    <svg viewBox="0 0 200 200" fill="white">
+                        <path d="M 50 100 L 100 50 L 150 100 L 100 150 Z" fill="yellow"/>
+                        <path d="M 100 50 L 150 100 L 100 150 L 50 100 Z" fill="magenta" opacity="0.5"/>
+                        <circle cx="100" cy="100" r="30" fill="cyan"/>
+                    </svg>
+                </div>
+                <div class="design-info">
+                    <h3 class="design-name">СЛОИ РЕАЛЬНОСТИ</h3>
+                    <p class="design-desc">То, что под поверхностью, важнее того, что видно.</p>
+                </div>
+            </div>
+            
+            <div class="design-item">
+                <div class="design-preview">
+                    <svg viewBox="0 0 200 200" fill="white">
+                        <polygon points="100,20 180,180 20,180" fill="none" stroke="white" stroke-width="3"/>
+                        <line x1="100" y1="20" x2="100" y2="180" stroke="red" stroke-width="2"/>
+                        <line x1="20" y1="180" x2="180" y2="180" stroke="cyan" stroke-width="2"/>
+                        <circle cx="100" cy="100" r="15" fill="yellow"/>
+                    </svg>
+                </div>
+                <div class="design-info">
+                    <h3 class="design-name">БАЛАНС ДИСБАЛАНСА</h3>
+                    <p class="design-desc">Совершенная симметрия — это смерть творчества.</p>
+                </div>
+            </div>
+            
+            <div class="design-item">
+                <div class="design-preview">
+                    <svg viewBox="0 0 200 200" fill="white">
+                        <rect x="40" y="40" width="120" height="120" fill="black" stroke="white" stroke-width="3"/>
+                        <circle cx="100" cy="100" r="40" fill="red"/>
+                        <rect x="80" y="80" width="40" height="40" fill="yellow" transform="rotate(45 100 100)"/>
+                    </svg>
+                </div>
+                <div class="design-info">
+                    <h3 class="design-name">ВРАЩЕНИЕ</h3>
+                    <p class="design-desc">Всё находится в постоянном движении.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="principles">
+        <h2 class="section-title">ПРИНЦИПЫ</h2>
+        
+        <div class="principles-list">
+            <div class="principle">
+                <h3 class="principle-title">01. МИНИМАЛИЗМ С МАКСИМАЛЬНЫМ ЭФФЕКТОМ</h3>
+                <p class="principle-text">Каждая линия должна кричать. Каждая форма должна провоцировать. Убери всё лишнее, оставь только суть.</p>
+            </div>
+            
+            <div class="principle">
+                <h3 class="principle-title">02. КОНТРАСТ КАК ОСНОВА</h3>
+                <p class="principle-text">Чёрное и белое. Хаос и порядок. Простота и сложность. В конфликте рождается энергия.</p>
+            </div>
+            
+            <div class="principle">
+                <h3 class="principle-title">03. ГЕОМЕТРИЯ АБСУРДА</h3>
+                <p class="principle-text">Круг может быть квадратом. Треугольник может быть всем. Форма — это не то, что видишь, а то, что чувствуешь.</p>
+            </div>
+            
+            <div class="principle">
+                <h3 class="principle-title">04. РАЗРУШЕНИЕ ОЖИДАНИЙ</h3>
+                <p class="principle-text">Если зритель ожидает красоты, дай ему хаос. Если ожидает порядка, дай беспорядок. Истинный дизайн всегда на шаг впереди восприятия.</p>
+            </div>
+            
+            <div class="principle">
+                <h3 class="principle-title">05. ЭМОЦИЯ ПРЕВЫШЕ ФУНКЦИИ</h3>
+                <p class="principle-text">Функция вторична. Первична реакция. Если дизайн не вызывает эмоцию, он мёртв.</p>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Рандомное вращение превью при наведении
+        document.querySelectorAll('.design-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const preview = this.querySelector('.design-preview');
+                const randomRotate = Math.random() * 10 - 5;
+                preview.style.transform = `rotate(${randomRotate}deg)`;
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                const preview = this.querySelector('.design-preview');
+                preview.style.transform = 'rotate(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>

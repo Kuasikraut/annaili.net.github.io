@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>КВАДРАТ - ДАДА</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier Prime', monospace;
+            background: #000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 2rem;
+            color: #fff;
+            text-decoration: none;
+            z-index: 1000;
+        }
+        
+        .back-btn:hover {
+            color: red;
+        }
+        
+        .login-container {
+            border: 3px solid #fff;
+            padding: 60px;
+            background: rgba(0, 0, 0, 0.9);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            letter-spacing: 10px;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 0px red;
+        }
+        
+        .form-group {
+            margin-bottom: 30px;
+        }
+        
+        label {
+            display: block;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1.1rem;
+            background: #000;
+            border: 2px solid #fff;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: red;
+            box-shadow: 0 0 10px red;
+        }
+        
+        button {
+            width: 100%;
+            padding: 20px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1.3rem;
+            background: #fff;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: red;
+            color: #fff;
+        }
+        
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            display: none;
+        }
+        
+        /* Страница постинга */
+        .posting-page {
+            display: none;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .posting-page.active {
+            display: block;
+        }
+        
+        .posting-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .posting-header h2 {
+            font-size: 2.5rem;
+            letter-spacing: 8px;
+            text-shadow: 2px 2px 0px red;
+        }
+        
+        .post-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 20px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1.1rem;
+            background: #000;
+            border: 2px solid #fff;
+            color: #fff;
+            resize: vertical;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: red;
+            box-shadow: 0 0 10px red;
+        }
+        
+        .buttons-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .action-btn {
+            padding: 15px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1rem;
+            background: #fff;
+            color: #000;
+            border: 2px solid #fff;
+            cursor: pointer;
+            letter-spacing: 3px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn:hover {
+            background: red;
+            color: #fff;
+            border-color: red;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">←</a>
+    
+    <div class="login-container" id="loginContainer">
+        <h1>КВАДРАТ</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">ЛОГИН</label>
+                <input type="text" id="username" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="password">ПАРОЛЬ</label>
+                <input type="password" id="password" autocomplete="off">
+            </div>
+            <button type="submit">ВОЙТИ</button>
+            <div class="error" id="error">НЕВЕРНЫЕ ДАННЫЕ</div>
+        </form>
+    </div>
+    
+    <div class="posting-page" id="postingPage">
+        <div class="posting-header">
+            <h2>СОЗДАТЬ ПОСТ</h2>
+        </div>
+        <div class="post-form">
+            <textarea id="postContent" placeholder="ЧТО У ВАС НА УМЕ?"></textarea>
+            <div class="buttons-row">
+                <button class="action-btn" id="publishBtn">ОПУБЛИКОВАТЬ</button>
+                <button class="action-btn" id="imageBtn">ДОБАВИТЬ ФОТО</button>
+                <button class="action-btn" id="chaosBtn">ХАОС-РЕЖИМ</button>
+                <button class="action-btn" id="cancelBtn">ОТМЕНИТЬ</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const correctLogin = 'zhopa';
+        const correctPassword = 'gnida';
+        
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const error = document.getElementById('error');
+            
+            if (username === correctLogin && password === correctPassword) {
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('postingPage').classList.add('active');
+            } else {
+                error.style.display = 'block';
+                setTimeout(() => {
+                    error.style.display = 'none';
+                }, 2000);
+            }
+        });
+        
+        // Кнопки постинга
+        document.getElementById('publishBtn').addEventListener('click', function() {
+            const content = document.getElementById('postContent').value;
+            if (content.trim()) {
+                alert('ПОСТ ОПУБЛИКОВАН В ПУСТОТУ');
+                document.getElementById('postContent').value = '';
+            }
+        });
+        
+        document.getElementById('imageBtn').addEventListener('click', function() {
+            alert('ДОБАВЬТЕ ИЗОБРАЖЕНИЕ (ФУНКЦИЯ В РАЗРАБОТКЕ)');
+        });
+        
+        document.getElementById('chaosBtn').addEventListener('click', function() {
+            const content = document.getElementById('postContent');
+            const text = content.value.split('');
+            const shuffled = text.sort(() => Math.random() - 0.5).join('');
+            content.value = shuffled;
+        });
+        
+        document.getElementById('cancelBtn').addEventListener('click', function() {
+            if (confirm('ОТМЕНИТЬ БЕЗ СОХРАНЕНИЯ?')) {
+                document.getElementById('postContent').value = '';
+            }
+        });
+    </script>
+</body>
+</html>

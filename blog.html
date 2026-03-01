@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>БЛОГ - ДАДА</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier Prime', monospace;
+            background: #000;
+            color: #fff;
+            padding: 40px 20px;
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 2rem;
+            color: #fff;
+            text-decoration: none;
+            z-index: 1000;
+        }
+        
+        .back-btn:hover {
+            color: red;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .blog-icon {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            letter-spacing: 10px;
+            text-shadow: 2px 2px 0px red;
+        }
+        
+        .posts-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .post {
+            border: 2px solid #fff;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+        
+        .post:hover {
+            border-color: red;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+        
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .post-title {
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+        }
+        
+        .post-date {
+            color: #666;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+        
+        .post-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        
+        .post-image {
+            width: 100%;
+            height: 300px;
+            background: #222;
+            border: 2px solid #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .placeholder-img {
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .post-tags {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            padding: 5px 15px;
+            border: 1px solid #666;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+        
+        .tag:hover {
+            border-color: red;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">←</a>
+    
+    <div class="header">
+        <svg class="blog-icon" viewBox="0 0 200 200">
+            <ellipse cx="100" cy="100" rx="80" ry="60" fill="white"/>
+            <circle cx="100" cy="100" r="35" fill="black"/>
+            <circle cx="100" cy="100" r="18" fill="red"/>
+            <circle cx="110" cy="95" r="8" fill="white"/>
+        </svg>
+        <h1>БЛОГ</h1>
+    </div>
+    
+    <div class="posts-container">
+        <div class="post">
+            <div class="post-header">
+                <h2 class="post-title">МАНИФЕСТ ХАОСА</h2>
+                <span class="post-date">01.03.2026</span>
+            </div>
+            <div class="post-content">
+                Мы отвергаем порядок. Мы отвергаем логику. Мы отвергаем смысл. В хаосе рождается истинное искусство. Дада — это не движение, это состояние ума. Это крик в пустоту, который эхом возвращается к нам как смех богов. Разрушение — это созидание. Абсурд — это правда. Мы танцуем на руинах разума.
+            </div>
+            <div class="post-image">
+                <span class="placeholder-img">[ИЗОБРАЖЕНИЕ ХАОСА]</span>
+            </div>
+            <div class="post-tags">
+                <span class="tag">#ДАДА</span>
+                <span class="tag">#ХАОС</span>
+                <span class="tag">#МАНИФЕСТ</span>
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <h2 class="post-title">ЗАПИСКИ БЕЗУМЦА</h2>
+                <span class="post-date">28.02.2026</span>
+            </div>
+            <div class="post-content">
+                Сегодня я видел цвета, которых не существует. Слышал звуки тишины. Чувствовал запах времени. Реальность — это иллюзия, созданная нашим ограниченным восприятием. Но что если мы сможем выйти за эти рамки? Что если безумие — это единственный путь к истине? ДАДА знает ответ. ДАДА — это ключ.
+            </div>
+            <div class="post-image">
+                <span class="placeholder-img">[ПОРТРЕТ БЕЗУМИЯ]</span>
+            </div>
+            <div class="post-tags">
+                <span class="tag">#БЕЗУМИЕ</span>
+                <span class="tag">#ФИЛОСОФИЯ</span>
+                <span class="tag">#РЕАЛЬНОСТЬ</span>
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <h2 class="post-title">АНТИИСКУССТВО КАК ИСКУССТВО</h2>
+                <span class="post-date">25.02.2026</span>
+            </div>
+            <div class="post-content">
+                Каждый акт разрушения — это акт творения. Мы не создаем произведения искусства, мы уничтожаем саму концепцию искусства. И в этом уничтожении рождается нечто новое, нечто невообразимое. Дада не спрашивает разрешения. Дада просто ЕСТЬ. И это пугает тех, кто привык к порядку и структуре.
+            </div>
+            <div class="post-image">
+                <span class="placeholder-img">[КОЛЛАЖ АБСУРДА]</span>
+            </div>
+            <div class="post-tags">
+                <span class="tag">#АНТИИСКУССТВО</span>
+                <span class="tag">#ТВОРЧЕСТВО</span>
+                <span class="tag">#РЕВОЛЮЦИЯ</span>
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <h2 class="post-title">ЗВУКОВАЯ ПОЭМА #47</h2>
+                <span class="post-date">22.02.2026</span>
+            </div>
+            <div class="post-content">
+                БЗЗЗ КХРРР ААААА ПШШ ТРРРР! ДАДА ДАДА ДАДА! КРРРАКККХ! Слова теряют смысл, когда мы освобождаем звук от оков языка. Фонетическая свобода! Вокальный хаос! Это не поэзия в традиционном смысле — это сырая эмоция, выраженная в чистом звуке. ВРРРРР ПФФФ КШШШ!
+            </div>
+            <div class="post-image">
+                <span class="placeholder-img">[ЗВУКОВАЯ ВОЛНА]</span>
+            </div>
+            <div class="post-tags">
+                <span class="tag">#ЗВУК</span>
+                <span class="tag">#ПОЭЗИЯ</span>
+                <span class="tag">#ЭКСПЕРИМЕНТ</span>
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <h2 class="post-title">НОЧНЫЕ ВИДЕНИЯ</h2>
+                <span class="post-date">19.02.2026</span>
+            </div>
+            <div class="post-content">
+                В 3:33 утра границы между мирами становятся тоньше. Я вижу тени, которые не отбрасывают предметы. Слышу шепот на языках, которых не существует. Дада приходит ко мне во снах и говорит: "Все, что ты знаешь — ложь. Все, что ты не знаешь — правда." И я верю. Потому что в абсурде скрыта глубочайшая мудрость.
+            </div>
+            <div class="post-image">
+                <span class="placeholder-img">[НОЧНОЕ ВИДЕНИЕ]</span>
+            </div>
+            <div class="post-tags">
+                <span class="tag">#СНЫ</span>
+                <span class="tag">#МИСТИКА</span>
+                <span class="tag">#НОЧЬ</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Анимация постов при скролле
+        const posts = document.querySelectorAll('.post');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        posts.forEach(post => {
+            post.style.opacity = '0';
+            post.style.transform = 'translateY(50px)';
+            post.style.transition = 'all 0.6s ease';
+            observer.observe(post);
+        });
+    </script>
+</body>
+</html>

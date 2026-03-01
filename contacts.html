@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>КОНТАКТЫ - ДАДА</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier Prime', monospace;
+            background: #000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px;
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 2rem;
+            color: #fff;
+            text-decoration: none;
+            z-index: 1000;
+        }
+        
+        .back-btn:hover {
+            color: red;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 4rem;
+            letter-spacing: 15px;
+            margin-bottom: 60px;
+            text-shadow: 3px 3px 0 red;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .contact-card {
+            border: 2px solid #fff;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .contact-card:hover {
+            border-color: red;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+        }
+        
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-label {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            color: #888;
+        }
+        
+        .contact-value {
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            word-break: break-all;
+        }
+        
+        .contact-value a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-value a:hover {
+            color: red;
+        }
+        
+        .message-section {
+            border: 3px solid #fff;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .message-title {
+            font-size: 2rem;
+            letter-spacing: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: #888;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1rem;
+            background: #000;
+            border: 2px solid #444;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: red;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        button {
+            width: 100%;
+            padding: 20px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1.2rem;
+            background: #fff;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: red;
+            color: #fff;
+        }
+        
+        .disclaimer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">←</a>
+    
+    <div class="container">
+        <h1>КОНТАКТЫ</h1>
+        
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <div class="contact-label">EMAIL</div>
+                <div class="contact-value">
+                    <a href="mailto:dada@chaos.art">dada@chaos.art</a>
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">📱</div>
+                <div class="contact-label">TELEGRAM</div>
+                <div class="contact-value">
+                    <a href="https://t.me/dadachaos" target="_blank">@dadachaos</a>
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">🎨</div>
+                <div class="contact-label">INSTAGRAM</div>
+                <div class="contact-value">
+                    <a href="https://instagram.com/dada.chaos" target="_blank">@dada.chaos</a>
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">🐦</div>
+                <div class="contact-label">TWITTER/X</div>
+                <div class="contact-value">
+                    <a href="https://x.com/dadachaos" target="_blank">@dadachaos</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="message-section">
+            <h2 class="message-title">СООБЩЕНИЕ</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">ИМЯ</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">EMAIL</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">СООБЩЕНИЕ</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit">ОТПРАВИТЬ В ПУСТОТУ</button>
+            </form>
+            
+            <p class="disclaimer">
+                * Все сообщения исчезают в цифровом хаосе. <br>
+                Если вы получите ответ, считайте это чудом.
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Симуляция отправки
+            const button = this.querySelector('button');
+            const originalText = button.textContent;
+            
+            button.textContent = 'ОТПРАВКА...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.textContent = 'ОТПРАВЛЕНО В ХАОС ✓';
+                
+                setTimeout(() => {
+                    this.reset();
+                    button.textContent = originalText;
+                    button.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

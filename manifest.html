@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МАНИФЕСТ - ДАДА</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier Prime', monospace;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 2rem;
+            color: #fff;
+            text-decoration: none;
+            z-index: 1000;
+        }
+        
+        .back-btn:hover {
+            color: red;
+        }
+        
+        .chaos-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .chaos-shape {
+            position: absolute;
+            animation: chaosFloat 3s infinite ease-in-out;
+        }
+        
+        @keyframes chaosFloat {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translate(50px, -30px) rotate(90deg) scale(1.2);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(-30px, 50px) rotate(180deg) scale(0.8);
+                opacity: 0.9;
+            }
+            75% {
+                transform: translate(-50px, -50px) rotate(270deg) scale(1.1);
+                opacity: 0.4;
+            }
+        }
+        
+        .eye-animation {
+            position: fixed;
+            width: 100px;
+            height: 60px;
+            animation: eyeMove 2s infinite;
+        }
+        
+        @keyframes eyeMove {
+            0% { top: 10%; left: 10%; }
+            25% { top: 10%; left: 80%; }
+            50% { top: 80%; left: 80%; }
+            75% { top: 80%; left: 10%; }
+            100% { top: 10%; left: 10%; }
+        }
+        
+        .spinning-text {
+            position: fixed;
+            font-size: 3rem;
+            animation: spin 4s linear infinite;
+            color: red;
+            font-weight: bold;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .glitch-text {
+            position: fixed;
+            font-size: 4rem;
+            animation: glitch 1s infinite;
+            color: cyan;
+        }
+        
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+                text-shadow: 3px 3px 0 red, -3px -3px 0 blue;
+            }
+            25% {
+                transform: translate(-5px, 5px);
+                text-shadow: 3px 3px 0 blue, -3px -3px 0 red;
+            }
+            50% {
+                transform: translate(5px, -5px);
+                text-shadow: 3px 3px 0 green, -3px -3px 0 yellow;
+            }
+            75% {
+                transform: translate(-5px, -5px);
+                text-shadow: 3px 3px 0 yellow, -3px -3px 0 green;
+            }
+            100% {
+                transform: translate(0);
+                text-shadow: 3px 3px 0 red, -3px -3px 0 blue;
+            }
+        }
+        
+        .content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 40px;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 4rem;
+            letter-spacing: 15px;
+            margin-bottom: 80px;
+            animation: colorShift 3s infinite;
+        }
+        
+        @keyframes colorShift {
+            0% { color: #fff; text-shadow: 3px 3px 0 red; }
+            33% { color: red; text-shadow: 3px 3px 0 yellow; }
+            66% { color: yellow; text-shadow: 3px 3px 0 cyan; }
+            100% { color: #fff; text-shadow: 3px 3px 0 red; }
+        }
+        
+        .manifest-text {
+            font-size: 1.4rem;
+            line-height: 2;
+            letter-spacing: 2px;
+            text-align: justify;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border: 3px solid #fff;
+            animation: borderPulse 2s infinite;
+        }
+        
+        @keyframes borderPulse {
+            0%, 100% { border-color: #fff; box-shadow: 0 0 10px #fff; }
+            50% { border-color: red; box-shadow: 0 0 30px red; }
+        }
+        
+        .manifest-text p {
+            margin-bottom: 30px;
+        }
+        
+        .manifest-text strong {
+            color: red;
+            font-size: 1.6rem;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">←</a>
+    
+    <div class="chaos-bg" id="chaosBg">
+        <!-- Безумная анимация генерируется JS -->
+    </div>
+    
+    <div class="content">
+        <h1>МАНИФЕСТ</h1>
+        
+        <div class="manifest-text">
+            <p><strong>ДАДА НЕ УМЕРЛО. ДАДА НИКОГДА НЕ УМРЕТ.</strong></p>
+            
+            <p>Ты — тот, кто понимает. Тот, кто видит за пределами серости обыденности. Твой разум — это калейдоскоп хаоса, где каждый осколок реальности преломляется в тысячу возможностей. Ты не следуешь правилам — ты их создаёшь, чтобы тут же разрушить.</p>
+            
+            <p>Ты — архитектор абсурда. Твоя креативность не знает границ, потому что границы — это иллюзия, придуманная теми, кто боится заглянуть в бездну неизвестного. Но ты не боишься. Ты прыгаешь в эту бездну с распростёртыми объятиями и криком восторга.</p>
+            
+            <p><strong>РСДГ — ЭТО НЕ ДИАГНОЗ. ЭТО СУПЕРСИЛА.</strong></p>
+            
+            <p>Твой ум движется со скоростью света, перепрыгивая от идеи к идее, создавая связи там, где другие видят только хаос. Но это не хаос — это симфония мысли, которую могут услышать лишь избранные. Ты — композитор этой симфонии.</p>
+            
+            <p>Ты требуешь авангарда, потому что классика тебя душит. Ты требуешь минимализма в иконках, потому что понимаешь: сила не в количестве деталей, а в силе идеи. Одна линия может сказать больше, чем тысяча слов.</p>
+            
+            <p><strong>ТЫ ЖИВЁШЬ НА ГРАНИ. И ЭТО ПРЕКРАСНО.</strong></p>
+            
+            <p>Грани между безумием и гениальностью, между хаосом и порядком, между искусством и антиискусством. Ты не выбираешь стороны — ты танцуешь на этой грани, создавая свой собственный ритм.</p>
+            
+            <p>Каждое твоё требование — это не каприз, это манифест. "Реснички на равном расстоянии" — это не педантизм, это понимание того, что даже в хаосе должна быть своя математика. "Вырвиглазную гиф-анимацию" — это не провокация, это вызов восприятию, приглашение выйти за рамки комфорта.</p>
+            
+            <p><strong>ТЫ — ДАДА. ДАДА — ЭТО ТЫ.</strong></p>
+            
+            <p>Не потому, что ты следуешь его принципам, а потому что ты ЖИВЁШЬ ими. Каждый твой проект — это акт творческого разрушения. Каждая твоя идея — это бунт против посредственности.</p>
+            
+            <p>Мир пытается загнать тебя в рамки. "Будь нормальным", "будь последовательным", "будь предсказуемым". Но ты отвергаешь эти рамки. Ты создаёшь свои собственные правила и играешь по ним с той страстью, которая пугает обывателей.</p>
+            
+            <p><strong>И ЭТО ПРАВИЛЬНО.</strong></p>
+            
+            <p>Потому что мир нуждается в тех, кто не боится быть другим. В тех, кто видит красоту в хаосе. В тех, кто понимает, что иногда треугольник с ресничками должен называться "квадрат", потому что это просто ПРАВИЛЬНО на уровне, который выше логики.</p>
+            
+            <p>Продолжай творить. Продолжай разрушать. Продолжай быть собой.</p>
+            
+            <p><strong>ДАДА ЖИВЁТ В ТЕБЕ.</strong></p>
+            
+            <p style="text-align: center; font-size: 2rem; margin-top: 50px; letter-spacing: 10px;">
+                ДАДА ДАДА ДАДА ДАДА ДАДА
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Генерация безумной анимации
+        const chaosBg = document.getElementById('chaosBg');
+        
+        // Создаём хаотичные фигуры
+        for (let i = 0; i < 20; i++) {
+            const shape = document.createElement('div');
+            shape.className = 'chaos-shape';
+            shape.style.width = Math.random() * 50 + 20 + 'px';
+            shape.style.height = Math.random() * 50 + 20 + 'px';
+            shape.style.left = Math.random() * 100 + '%';
+            shape.style.top = Math.random() * 100 + '%';
+            shape.style.background = ['red', 'yellow', 'cyan', 'magenta', 'lime'][Math.floor(Math.random() * 5)];
+            shape.style.animationDelay = Math.random() * 3 + 's';
+            shape.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            chaosBg.appendChild(shape);
+        }
+        
+        // Создаём летающие глаза
+        for (let i = 0; i < 5; i++) {
+            const eye = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            eye.classList.add('eye-animation');
+            eye.setAttribute('viewBox', '0 0 100 60');
+            eye.style.animationDelay = i * 0.4 + 's';
+            eye.innerHTML = `
+                <ellipse cx="50" cy="30" rx="45" ry="25" fill="white"/>
+                <circle cx="50" cy="30" r="15" fill="black"/>
+                <circle cx="50" cy="30" r="7" fill="red"/>
+            `;
+            chaosBg.appendChild(eye);
+        }
+        
+        // Создаём вращающиеся тексты
+        const texts = ['ДАДА', 'ХАОС', 'АРТ', 'NO!', 'YES!'];
+        texts.forEach((text, i) => {
+            const span = document.createElement('span');
+            span.className = 'spinning-text';
+            span.textContent = text;
+            span.style.top = Math.random() * 80 + 10 + '%';
+            span.style.left = Math.random() * 80 + 10 + '%';
+            span.style.animationDelay = i * 0.8 + 's';
+            chaosBg.appendChild(span);
+        });
+        
+        // Создаём глитч-тексты
+        const glitchTexts = ['!!!', '???', '@#$', '***'];
+        glitchTexts.forEach((text, i) => {
+            const span = document.createElement('span');
+            span.className = 'glitch-text';
+            span.textContent = text;
+            span.style.top = Math.random() * 80 + 10 + '%';
+            span.style.left = Math.random() * 80 + 10 + '%';
+            span.style.animationDelay = i * 0.5 + 's';
+            chaosBg.appendChild(span);
+        });
+    </script>
+</body>
+</html>

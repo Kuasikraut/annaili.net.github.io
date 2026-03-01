@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АРХИВЫ - ДАДА</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier Prime', monospace;
+            background: #000;
+            color: #fff;
+            padding: 40px;
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 2rem;
+            color: #fff;
+            text-decoration: none;
+            z-index: 1000;
+        }
+        
+        .back-btn:hover {
+            color: red;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            letter-spacing: 10px;
+            margin-bottom: 60px;
+            text-shadow: 2px 2px 0px red;
+        }
+        
+        .folders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .folder {
+            border: 2px solid #fff;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .folder:hover {
+            border-color: red;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px red;
+        }
+        
+        .folder-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .folder-name {
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .modal.active {
+            display: block;
+        }
+        
+        .modal-content {
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 40px;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .modal-title {
+            font-size: 2.5rem;
+            letter-spacing: 8px;
+        }
+        
+        .close-modal {
+            font-size: 3rem;
+            cursor: pointer;
+            color: #fff;
+        }
+        
+        .close-modal:hover {
+            color: red;
+        }
+        
+        .files-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .file-item {
+            background: #222;
+            border: 2px solid #444;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .file-item:hover {
+            border-color: red;
+            background: #333;
+        }
+        
+        .file-name {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+        
+        .file-size {
+            color: #888;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">←</a>
+    
+    <h1>АРХИВЫ</h1>
+    
+    <div class="folders-grid">
+        <div class="folder" data-folder="manifests">
+            <div class="folder-icon">📜</div>
+            <div class="folder-name">МАНИФЕСТЫ</div>
+        </div>
+        
+        <div class="folder" data-folder="texts">
+            <div class="folder-icon">📝</div>
+            <div class="folder-name">ТЕКСТЫ</div>
+        </div>
+        
+        <div class="folder" data-folder="scans">
+            <div class="folder-icon">📄</div>
+            <div class="folder-name">СКАНЫ</div>
+        </div>
+        
+        <div class="folder" data-folder="history">
+            <div class="folder-icon">📚</div>
+            <div class="folder-name">ИСТОРИЯ</div>
+        </div>
+        
+        <div class="folder" data-folder="secret">
+            <div class="folder-icon">🔒</div>
+            <div class="folder-name">СЕКРЕТНОЕ</div>
+        </div>
+    </div>
+    
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <span class="close-modal" id="closeModal">×</span>
+            </div>
+            <div class="files-list" id="filesList"></div>
+        </div>
+    </div>
+    
+    <script>
+        const folderContents = {
+            manifests: [
+                { name: 'DADA_MANIFEST_1916.pdf', size: '2.3 MB' },
+                { name: 'ANTI_ART_MANIFEST.pdf', size: '1.8 MB' },
+                { name: 'ZURICH_DECLARATION.pdf', size: '950 KB' },
+                { name: 'CABARET_VOLTAIRE.pdf', size: '3.1 MB' }
+            ],
+            texts: [
+                { name: 'sound_poems_collection.txt', size: '45 KB' },
+                { name: 'random_thoughts.txt', size: '23 KB' },
+                { name: 'nonsense_diary.txt', size: '67 KB' },
+                { name: 'chaos_notes.txt', size: '34 KB' }
+            ],
+            scans: [
+                { name: 'original_poster_1.jpg', size: '5.2 MB' },
+                { name: 'original_poster_2.jpg', size: '4.8 MB' },
+                { name: 'magazine_scan_1923.pdf', size: '12.4 MB' },
+                { name: 'handwritten_notes.jpg', size: '3.6 MB' }
+            ],
+            history: [
+                { name: 'dada_timeline.pdf', size: '1.5 MB' },
+                { name: 'key_figures.pdf', size: '2.7 MB' },
+                { name: 'movement_spread.pdf', size: '3.2 MB' },
+                { name: 'influence_legacy.pdf', size: '1.9 MB' }
+            ],
+            secret: [
+                { name: '????.zip', size: '??? MB' },
+                { name: 'DONT_OPEN.rar', size: '666 KB' },
+                { name: 'encrypted_chaos.7z', size: '13.37 MB' }
+            ]
+        };
+        
+        const folderNames = {
+            manifests: 'МАНИФЕСТЫ',
+            texts: 'ТЕКСТЫ',
+            scans: 'СКАНЫ',
+            history: 'ИСТОРИЯ',
+            secret: 'СЕКРЕТНОЕ'
+        };
+        
+        // Открытие папки
+        document.querySelectorAll('.folder').forEach(folder => {
+            folder.addEventListener('click', function() {
+                const folderKey = this.getAttribute('data-folder');
+                openFolder(folderKey);
+            });
+        });
+        
+        function openFolder(folderKey) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modalTitle');
+            const filesList = document.getElementById('filesList');
+            
+            modalTitle.textContent = folderNames[folderKey];
+            filesList.innerHTML = '';
+            
+            folderContents[folderKey].forEach(file => {
+                const div = document.createElement('div');
+                div.className = 'file-item';
+                div.innerHTML = `
+                    <span class="file-name">${file.name}</span>
+                    <span class="file-size">${file.size}</span>
+                `;
+                filesList.appendChild(div);
+            });
+            
+            modal.classList.add('active');
+        }
+        
+        // Закрытие модального окна
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('modal').classList.remove('active');
+        });
+        
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

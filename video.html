@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВИДЕО - ДАДА</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier Prime', monospace;
+            background: #000;
+            color: #fff;
+            padding: 40px;
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 2rem;
+            color: #fff;
+            text-decoration: none;
+            z-index: 1000;
+        }
+        
+        .back-btn:hover {
+            color: red;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            letter-spacing: 10px;
+            margin-bottom: 60px;
+            text-shadow: 2px 2px 0px red;
+        }
+        
+        .folders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .folder {
+            border: 2px solid #fff;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .folder:hover {
+            border-color: red;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px red;
+        }
+        
+        .folder-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .folder-name {
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .modal.active {
+            display: block;
+        }
+        
+        .modal-content {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 40px;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .modal-title {
+            font-size: 2.5rem;
+            letter-spacing: 8px;
+        }
+        
+        .close-modal {
+            font-size: 3rem;
+            cursor: pointer;
+            color: #fff;
+        }
+        
+        .close-modal:hover {
+            color: red;
+        }
+        
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+        }
+        
+        .video-item {
+            aspect-ratio: 16/9;
+            background: #222;
+            border: 2px solid #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .video-item:hover {
+            border-color: red;
+        }
+        
+        .placeholder-text {
+            color: #666;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">←</a>
+    
+    <h1>ВИДЕО</h1>
+    
+    <div class="folders-grid">
+        <div class="folder" data-folder="performances">
+            <div class="folder-icon">🎭</div>
+            <div class="folder-name">ПЕРФОРМАНСЫ</div>
+        </div>
+        
+        <div class="folder" data-folder="experiments">
+            <div class="folder-icon">🔬</div>
+            <div class="folder-name">ЭКСПЕРИМЕНТЫ</div>
+        </div>
+        
+        <div class="folder" data-folder="madness">
+            <div class="folder-icon">🌀</div>
+            <div class="folder-name">БЕЗУМИЕ</div>
+        </div>
+        
+        <div class="folder" data-folder="street">
+            <div class="folder-icon">🚶</div>
+            <div class="folder-name">УЛИЦА</div>
+        </div>
+    </div>
+    
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <span class="close-modal" id="closeModal">×</span>
+            </div>
+            <div class="videos-grid" id="videosGrid"></div>
+        </div>
+    </div>
+    
+    <script>
+        const folderContents = {
+            performances: [
+                { title: 'ПЕРФОРМАНС #1' },
+                { title: 'ПЕРФОРМАНС #2' },
+                { title: 'ПЕРФОРМАНС #3' },
+                { title: 'ПЕРФОРМАНС #4' }
+            ],
+            experiments: [
+                { title: 'ЭКСПЕРИМЕНТ A' },
+                { title: 'ЭКСПЕРИМЕНТ B' },
+                { title: 'ЭКСПЕРИМЕНТ C' }
+            ],
+            madness: [
+                { title: 'БЕЗУМИЕ 001' },
+                { title: 'БЕЗУМИЕ 002' },
+                { title: 'БЕЗУМИЕ 003' },
+                { title: 'БЕЗУМИЕ 004' },
+                { title: 'БЕЗУМИЕ 005' }
+            ],
+            street: [
+                { title: 'УЛИЦА: ДЕНЬ' },
+                { title: 'УЛИЦА: НОЧЬ' },
+                { title: 'УЛИЦА: ХАОС' }
+            ]
+        };
+        
+        const folderNames = {
+            performances: 'ПЕРФОРМАНСЫ',
+            experiments: 'ЭКСПЕРИМЕНТЫ',
+            madness: 'БЕЗУМИЕ',
+            street: 'УЛИЦА'
+        };
+        
+        // Открытие папки
+        document.querySelectorAll('.folder').forEach(folder => {
+            folder.addEventListener('click', function() {
+                const folderKey = this.getAttribute('data-folder');
+                openFolder(folderKey);
+            });
+        });
+        
+        function openFolder(folderKey) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modalTitle');
+            const videosGrid = document.getElementById('videosGrid');
+            
+            modalTitle.textContent = folderNames[folderKey];
+            videosGrid.innerHTML = '';
+            
+            folderContents[folderKey].forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'video-item';
+                div.innerHTML = `<div class="placeholder-text">${item.title}</div>`;
+                videosGrid.appendChild(div);
+            });
+            
+            modal.classList.add('active');
+        }
+        
+        // Закрытие модального окна
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('modal').classList.remove('active');
+        });
+        
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
